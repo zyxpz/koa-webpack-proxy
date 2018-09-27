@@ -1,0 +1,59 @@
+{
+  "name": "koa",
+  "version": "1.0.0",
+  "description": "koa",
+  "author": "未命名",
+  "license": "ISC",
+  "bugs": {},
+  "repository": {},
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "node server.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --color --progress",
+    "lint": "esw ./src/**/*.js --fix --watch"
+  },
+  "entry": {
+    "test-index": "./src/test-index.js",
+    "test-index-tow": "./src/test-index-tow.js",
+    "test": "./src/test.js"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "chalk": "^2.4.1",
+    "file-loader": "^2.0.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "koa": "^2.5.3",
+    "koa-serve-index": "^1.1.1",
+    "koa-static": "^5.0.0",
+    "koa-webpack": "^5.1.0",
+    "koa-webpack-dev-middleware": "^2.0.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "cross-env": "^5.1.5",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^5.0.0",
+    "eslint-plugin-markdown": "^1.0.0-beta.6",
+    "eslint-plugin-react": "^7.7.0",
+    "eslint-watch": "^3.1.4",
+    "mini-css-extract-plugin": "^0.4.0",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "postcss-flexbugs-fixes": "^3.3.1",
+    "postcss-loader": "^2.1.5",
+    "postcss-smart-import": "^0.7.6",
+    "precss": "^3.1.2",
+    "style-loader": "^0.21.0",
+    "url-loader": "^1.0.1",
+    "webpack": "^4.8.1",
+    "webpack-cli": "^2.1.3"
+  }
+}
