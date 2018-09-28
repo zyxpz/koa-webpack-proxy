@@ -57,7 +57,7 @@ const config = {
 	},
 
 	optimization: {
-		minimize: milieu === 'production' ? true : false,
+		minimize: true,
 		namedModules: true,
 		noEmitOnErrors: true,
 		/**
