@@ -1,18 +1,19 @@
 import './index.html';
 import './test-index.less';
 import async from 'async';
+import log from './common';
 
 const run = {
 	name: 'test-run',
 	'one'() {
-		console.log('one');
+		log('one');
 	},
 	'two'() {
-		console.log('two');
+		log('two');
 	},
 	mm() {
-		console.log('mm');
-		console.log(this);
+		log('mm');
+		log(this);
 	}
 };
 
@@ -37,5 +38,10 @@ async.series([
 	next => build('two', null, next(null, 'two')),
 	next => build('mm', null, next(null, 'mm'))
 ], (error, results) => {
-	console.log(error, results);
+	log(error, results);
 });
+
+
+function commonBuild() {
+	build('name');
+}

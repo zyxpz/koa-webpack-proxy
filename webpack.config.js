@@ -60,6 +60,18 @@ const config = {
 		minimize: milieu === 'production' ? true : false,
 		namedModules: true,
 		noEmitOnErrors: true,
+		/**
+       * CommonsChunkPlugin
+       */
+		splitChunks: {
+			cacheGroups: {
+				commons: {
+					name: 'commons',
+					chunks: 'initial',
+					minChunks: 2
+				}
+			}
+		}
 	},
 	plugins: [
 		new MiniCssExtractPlugin({

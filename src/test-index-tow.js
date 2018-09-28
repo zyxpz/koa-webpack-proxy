@@ -1,2 +1,3 @@
-console.log('test');
-console.log(1);
+import log from './common';
+
+log('test-index-tow');
