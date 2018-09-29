@@ -68,25 +68,25 @@ const compiler = webpack(webpackConfig);
 // 	quiet: true,
 // }));
 
-const proxyServer = new ProxyServer({
-	type: 'http',
-	port: '8989',
-	hostname: 'localhost',
-	rule: {
-		port: '8989',
-		hostname: '127.0.0.1',
-		cwd: process.cwd(),
-		getProxyConfig: 'proxy.config.js'
-	},
-	autoTrust: true,
-});
-proxyServer.on('finish', (err) => {
-	if (err) {
-		console.error(err);
-	} else {
-		console.info(`listened on 8989`);
-	}
-});
+// const proxyServer = new ProxyServer({
+// 	type: 'http',
+// 	port: '8989',
+// 	hostname: 'localhost',
+// 	rule: {
+// 		port: '8989',
+// 		hostname: '127.0.0.1',
+// 		cwd: process.cwd(),
+// 		getProxyConfig: 'proxy.config.js'
+// 	},
+// 	autoTrust: true,
+// });
+// proxyServer.on('finish', (err) => {
+// 	if (err) {
+// 		console.error(err);
+// 	} else {
+// 		console.info(`listened on 8989`);
+// 	}
+// });
 
 app.use(devMiddleware(compiler, {
 	publicPath: '/',

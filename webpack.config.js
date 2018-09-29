@@ -1,6 +1,10 @@
 const webpack = require('webpack');
 
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const milieu = process.env.NODE_ENV || 'development';
 
@@ -57,7 +61,6 @@ const config = {
 	},
 
 	optimization: {
-		minimize: true,
 		namedModules: true,
 		noEmitOnErrors: true,
 		/**
@@ -79,9 +82,28 @@ const config = {
 		}),
 		new webpack.EvalSourceMapDevToolPlugin({
 			filename: '[name].js.map',
-		}),
+		})
 	]
 };
+
+if (milieu === 'production') {
+	config.plugins.push(
+		new OptimizeCSSAssetsPlugin({}),
+		new UglifyJsPlugin({
+			parallel: true,
+			uglifyOptions: {
+				output: {
+					ascii_only: true,
+					beautify: false,
+				},
+				compress: {
+					warnings: false,
+					evaluate: false
+				}
+			}
+		})
+	);
+}
 
 
 module.exports = config;

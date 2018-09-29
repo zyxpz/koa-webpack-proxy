@@ -8,8 +8,9 @@
   "repository": {},
   "scripts": {
     "start": "npm run dev",
-    "dev": "node server.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --color --progress",
+    "dev": "cross-env NODE_ENV=development node server.dev.js",
+    "pre": "cross-env NODE_ENV=production node server.dev.js",
+    "build": "cross-env NODE_ENV=production node build.js",
     "lint": "esw ./src/**/*.js --fix --watch"
   },
   "entry": {
@@ -31,7 +32,9 @@
     "koa-static": "^5.0.0",
     "koa-webpack": "^5.1.0",
     "koa-webpack-dev-middleware": "^2.0.2",
-    "node-notifier": "^5.2.1"
+    "node-notifier": "^5.2.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "uglifyjs-webpack-plugin": "^2.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
