@@ -6,12 +6,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
+const MapJsonWebpackPlugin = require('map-json-webpack-plugin');
+
+const NpmInstallPlugin = require('npm-install-webpack-plugin');
+
 const milieu = process.env.NODE_ENV || 'development';
 
 const APP_PATH = process.cwd();
 
 const {
-	entry
+	entry,
+	name
 } = require('./package.json');
 
 const config = {
@@ -82,12 +87,7 @@ const config = {
 		}),
 		new webpack.EvalSourceMapDevToolPlugin({
 			filename: '[name].js.map',
-		})
-	]
-};
-
-if (milieu === 'production') {
-	config.plugins.push(
+		}),
 		new OptimizeCSSAssetsPlugin({}),
 		new UglifyJsPlugin({
 			parallel: true,
@@ -95,15 +95,22 @@ if (milieu === 'production') {
 				output: {
 					ascii_only: true,
 					beautify: false,
+					comments: false
 				},
 				compress: {
 					warnings: false,
-					evaluate: false
+					evaluate: false,
+					collapse_vars: false,
+					reduce_vars: true
+				},
+				minify: {
+					removeComments: true,               // 去注释
+					collapseWhitespace: true,           // 压缩空格
+					removeAttributeQuotes: true         // 去除属性引用
 				}
 			}
 		})
-	);
-}
-
+	]
+};
 
 module.exports = config;
