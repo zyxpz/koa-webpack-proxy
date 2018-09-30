@@ -20,6 +20,8 @@ const serverIndex = require('./plugins/serve-index');
 
 const serverStatic = require('./plugins/static');
 
+const getRule = require('./proxy/getRule');
+
 const app = new Koa();
 
 app.use(serverIndex);
@@ -72,12 +74,11 @@ const compiler = webpack(webpackConfig);
 // 	type: 'http',
 // 	port: '8989',
 // 	hostname: 'localhost',
-// 	rule: {
-// 		port: '8989',
-// 		hostname: '127.0.0.1',
+// 	rule: getRule({
 // 		cwd: process.cwd(),
-// 		getProxyConfig: 'proxy.config.js'
-// 	},
+// 		port: '8001',
+// 		query: {}
+// 	}),
 // 	autoTrust: true,
 // });
 // proxyServer.on('finish', (err) => {

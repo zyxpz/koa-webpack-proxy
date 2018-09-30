@@ -88,28 +88,28 @@ const config = {
 		new webpack.EvalSourceMapDevToolPlugin({
 			filename: '[name].js.map',
 		}),
-		new OptimizeCSSAssetsPlugin({}),
-		new UglifyJsPlugin({
-			parallel: true,
-			uglifyOptions: {
-				output: {
-					ascii_only: true,
-					beautify: false,
-					comments: false
-				},
-				compress: {
-					warnings: false,
-					evaluate: false,
-					collapse_vars: false,
-					reduce_vars: true
-				},
-				minify: {
-					removeComments: true,               // 去注释
-					collapseWhitespace: true,           // 压缩空格
-					removeAttributeQuotes: true         // 去除属性引用
-				}
-			}
-		})
+		// new OptimizeCSSAssetsPlugin({}),
+		// new UglifyJsPlugin({
+		// 	parallel: true,
+		// 	uglifyOptions: {
+		// 		output: {
+		// 			ascii_only: true,
+		// 			beautify: false,
+		// 			comments: false
+		// 		},
+		// 		compress: {
+		// 			warnings: false,
+		// 			evaluate: false,
+		// 			collapse_vars: false,
+		// 			reduce_vars: true
+		// 		},
+		// 		minify: {
+		// 			removeComments: true,               // 去注释
+		// 			collapseWhitespace: true,           // 压缩空格
+		// 			removeAttributeQuotes: true         // 去除属性引用
+		// 		}
+		// 	}
+		// })
 	]
 };
 

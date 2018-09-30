@@ -2,6 +2,9 @@ import './index.html';
 import './test-index.less';
 import async from 'async';
 import log from './common';
+import $ from 'anima-yocto';
+
+console.log(1);
 
 const run = {
 	name: 'test-run',
@@ -14,6 +17,19 @@ const run = {
 	mm() {
 		log('mm');
 		log(this);
+	},
+	'ajax'() {
+		$.ajax({
+			url: '/init.json',
+			type: 'GET',
+			data: {
+				tmc: 'sb'
+			},
+			success(d) {
+				console.log(d);
+			}
+
+		});
 	}
 };
 
@@ -36,7 +52,8 @@ const build = (name, plugins, cb = loop => {}) => {
 async.series([
 	next => build('one', null, next(null, 'one')),
 	next => build('two', null, next(null, 'two')),
-	next => build('mm', null, next(null, 'mm'))
+	next => build('mm', null, next(null, 'mm')),
+	next => build('ajax', null, next(null, 'ajax')),
 ], (error, results) => {
 	log(error, results);
 });

@@ -19,11 +19,13 @@
     "test": "./src/test.js"
   },
   "dependencies": {
+    "anima-yocto": "^2.0.2",
     "anyproxy": "^4.0.12",
     "async": "^2.6.1",
     "babel-plugin-add-module-exports": "^1.0.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "chalk": "^2.4.1",
+    "crequire": "^1.8.1",
     "dora-anyproxy": "^3.9.3",
     "file-loader": "^2.0.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
@@ -33,6 +35,7 @@
     "koa-webpack": "^5.1.0",
     "koa-webpack-dev-middleware": "^2.0.2",
     "map-json-webpack-plugin": "^1.2.0",
+    "mime-type": "^3.0.5",
     "node-notifier": "^5.2.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "uglifyjs-webpack-plugin": "^2.0.1"
