@@ -38,6 +38,7 @@
     "mime-type": "^3.0.5",
     "node-notifier": "^5.2.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "request": "^2.88.0",
     "uglifyjs-webpack-plugin": "^2.0.1"
   },
   "devDependencies": {
