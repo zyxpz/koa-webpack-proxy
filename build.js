@@ -43,7 +43,6 @@ compiler.run((err, stats) => {
     		console.log(buildInfo);
     		return;
     	}
-	console.log(buildInfo);
 	notifier.notify({
 		title: 'build',
 		message: 'done',

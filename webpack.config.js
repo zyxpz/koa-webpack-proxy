@@ -74,9 +74,9 @@ const config = {
 		splitChunks: {
 			cacheGroups: {
 				commons: {
+					test: /[\\/]node_modules[\\/]/,
 					name: 'commons',
-					chunks: 'initial',
-					minChunks: 2
+					chunks: 'all'
 				}
 			}
 		}
