@@ -10,6 +10,8 @@ const MapJsonWebpackPlugin = require('map-json-webpack-plugin');
 
 const NpmInstallPlugin = require('npm-install-webpack-plugin');
 
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
 const milieu = process.env.NODE_ENV || 'development';
 
 const APP_PATH = process.cwd();
@@ -69,8 +71,8 @@ const config = {
 		namedModules: true,
 		noEmitOnErrors: true,
 		/**
-       * CommonsChunkPlugin
-       */
+		 * CommonsChunkPlugin
+		 */
 		splitChunks: {
 			cacheGroups: {
 				commons: {
@@ -79,37 +81,40 @@ const config = {
 					chunks: 'all'
 				}
 			}
-		}
+		},
+		minimizer: [
+			// js 压缩
+			new UglifyJsPlugin({
+				parallel: true,
+				sourceMap: true,
+				extractComments: true,
+				uglifyOptions: {
+					warnings: false,
+					parse: {},
+					compress: {},
+					mangle: true,
+					output: null,
+					toplevel: false,
+					nameCache: null,
+					ie8: false,
+					keep_fnames: false,
+				}
+			})
+		]
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
-		}),
-		new webpack.EvalSourceMapDevToolPlugin({
-			filename: '[name].js.map',
-		}),
-		// new OptimizeCSSAssetsPlugin({}),
-		// new UglifyJsPlugin({
-		// 	parallel: true,
-		// 	uglifyOptions: {
-		// 		output: {
-		// 			ascii_only: true,
-		// 			beautify: false,
-		// 			comments: false
-		// 		},
-		// 		compress: {
-		// 			warnings: false,
-		// 			evaluate: false,
-		// 			collapse_vars: false,
-		// 			reduce_vars: true
-		// 		},
-		// 		minify: {
-		// 			removeComments: true,               // 去注释
-		// 			collapseWhitespace: true,           // 压缩空格
-		// 			removeAttributeQuotes: true         // 去除属性引用
-		// 		}
-		// 	}
-		// })
+		}), // 分离css
+		new webpack.NoEmitOnErrorsPlugin(),
+		new OptimizeCSSAssetsPlugin({}), // css压缩
+		new CleanWebpackPlugin(['dist']), // 清除dist
+		new NpmInstallPlugin({
+			dev: false,
+			peerDependencies: true,
+			quiet: false,
+			npm: 'npm --registry=https://registry.npm.taobao.org'
+		})
 	]
 };
 

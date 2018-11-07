@@ -28,6 +28,8 @@ app.use(serverIndex);
 
 app.use(serverStatic);
 
+webpackConfig.devtool = 'cheap-module-eval-source-map';
+
 webpackConfig.plugins = webpackConfig.plugins.concat([
 	/**
 	 * 友好提示
@@ -51,11 +53,11 @@ webpackConfig.plugins = webpackConfig.plugins.concat([
 			});
 		}
 	}),
-	new ProgressPlugin((percentage, msg) => {
+	new ProgressPlugin((percentage, msg, ...args) => {
 		const stream = process.stderr;
 		if (stream.isTTY && percentage < 0.71) {
 			stream.cursorTo(0);
-			stream.write(`💰  ${chalk.magenta(msg)}`);
+			stream.write(`💰  ${chalk.magenta(msg, '-', args[0])}`);
 			stream.clearLine(1);
 		} else if (percentage === 1) {
 			console.log(chalk.blue('\nwebpack: bundle build is now finished.'));
